@@ -22,6 +22,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./  # Use the root of the repository as the build context
-          file: ./backend/Dockerfile  # Dockerfile is inside the 'backend' directory
+          file: .full-stack_chatApp/backend/Dockerfile  # Dockerfile is inside the 'backend' directory
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
