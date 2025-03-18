@@ -21,7 +21,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./
-          file: ./frontend/Dockerfile
+          file: frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
       - 
@@ -29,6 +29,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./
-          file: ./backend/Dockerfile
+          file: backend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
