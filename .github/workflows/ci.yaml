@@ -10,18 +10,24 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      # Step to login to Docker Hub
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Login to Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Step to build and push backend Docker image
-      - name: Build and Push action backend
-        uses: docker/build-push-action@v6
-        with:
-          context: ./  # Use the root of the repository as the build context
-          file: full-stack_chatApp/backend/Dockerfile  # Dockerfile is inside the 'backend' directory
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
+      # Build the backend Docker image using the Docker CLI
+      - name: Build and Push action backend (CLI)
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }} -f ./backend/Dockerfile ./  # Use the root as context
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
+
+      # Build the frontend Docker image using the Docker CLI (if needed)
+      - name: Build and Push action frontend (CLI)
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }} -f ./frontend/Dockerfile ./  # Use the root as context
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }}
