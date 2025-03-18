@@ -1,4 +1,4 @@
 image: 
   repository: nithin8/chat-app-helm
   pullPolicy: IfNotPresent
-  tag: "13920570855"
+  tag: "13920743440"
