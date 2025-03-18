@@ -2,7 +2,7 @@ name: CI/CD
 on:
   push:
     branches:
-      - main
+    - main
     paths-ignore:
       - 'chat-app-helm'
 
@@ -10,34 +10,25 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Step to print current working directory
-      - name: Print working directory
-        run: echo "Current working directory: $(pwd)"
-        
-      - name: Login to Docker Hub
+      -
+        name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      # Build and Push action frontend
-      - name: Build and Push action frontend
+      - 
+        name: Build and Push action frontend
         uses: docker/build-push-action@v6
         with:
-          context: ./  # Use root as the build context
-          file: frontend/Dockerfile  # Path to frontend Dockerfile
+          context: .
+          file: ../frontend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }}
-      
-      # Build and Push action backend
-      - name: Build and Push action backend
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
+      - 
+        name: Build and Push action backend
         uses: docker/build-push-action@v6
         with:
-          context: ./  # Use root as the build context
-          file: backend/Dockerfile  # Path to backend Dockerfile
+          context: ./
+          file: backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
-
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
