@@ -16,19 +16,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - 
-        name: Build and Push action frontend
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./frontend/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
+     
       - 
         name: Build and Push action backend
         uses: docker/build-push-action@v6
         with:
-          context: ./
-          file: backend/Dockerfile
+          context: .
+          file: ./backend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
