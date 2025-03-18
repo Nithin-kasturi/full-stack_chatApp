@@ -10,18 +10,18 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Login to Docker Hub
+      # Step to login to Docker Hub
+      - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-     
-      - 
-        name: Build and Push action backend
+
+      # Step to build and push backend Docker image
+      - name: Build and Push action backend
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
-          file: ./Dockerfile
+          context: ./  # Use the root of the repository as the build context
+          file: ./backend/Dockerfile  # Dockerfile is inside the 'backend' directory
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app:${{github.run_id}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
