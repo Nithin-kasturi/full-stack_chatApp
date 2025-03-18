@@ -33,7 +33,7 @@ jobs:
       - name: Build and Push backend Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./  # Use the root of the repo as context for backend
+          context: ./backend  # Use the root of the repo as context for backend
           file: ./backend/Dockerfile  # Path to Dockerfile inside the backend directory
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
