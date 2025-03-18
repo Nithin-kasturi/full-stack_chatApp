@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: nithin8/chat-app-backend:latest
+        image: nithin8/chat-app-backend:{{.Values.image.tag}}
         ports:
         - containerPort: 5001
         env:

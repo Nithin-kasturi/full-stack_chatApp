@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: nithin8/chat-app-frontend:latest  
+        image: nithin8/chat-app-frontend:{{.Values.image.tag}} 
         ports:
         - containerPort: 80
