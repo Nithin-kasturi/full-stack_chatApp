@@ -37,7 +37,7 @@ jobs:
           file: ./backend/Dockerfile  # Path to Dockerfile inside the backend directory
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
-  Update NewTag in Helm Chart:
+  Update-NewTag-in-Helm-Chart:
     runs-on: ubuntu-latest
     needs: push
     steps:
