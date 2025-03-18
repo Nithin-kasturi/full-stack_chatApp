@@ -1,3 +1,11 @@
+name: CI/CD
+on:
+  push:
+    branches:
+    - main
+    paths-ignore:
+      - 'chat-app-helm'
+
 jobs:
   docker:
     runs-on: ubuntu-latest
