@@ -39,7 +39,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
   Update-NewTag-in-Helm-Chart:
     runs-on: ubuntu-latest
-    needs: push
+    needs: docker
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
