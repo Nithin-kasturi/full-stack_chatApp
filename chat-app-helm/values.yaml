@@ -1,4 +1,4 @@
 image: 
   repository: nithin8/go-web-app
   pullPolicy: IfNotPresent
-  tag: "13921274527"
+  tag: "13921513354"
