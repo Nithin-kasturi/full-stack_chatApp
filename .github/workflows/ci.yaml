@@ -23,11 +23,11 @@ jobs:
       # Build the backend Docker image using the Docker CLI
       - name: Build and Push action backend (CLI)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }} -f ./backend/Dockerfile ./  # Use the root as context
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }} -f ./backend/Dockerfile   # Use the root as context
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
 
       # Build the frontend Docker image using the Docker CLI (if needed)
       - name: Build and Push action frontend (CLI)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }} -f ./frontend/Dockerfile ./  # Use the root as context
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }} -f ./frontend/Dockerfile   # Use the root as context
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-frontend:${{ github.run_id }}
