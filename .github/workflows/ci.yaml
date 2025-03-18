@@ -16,10 +16,10 @@ jobs:
       - name: Print working directory
         run: pwd  # This will print the current working directory in the logs
 
-      - name: Build and Push backend Docker image
+      - name: Build and Push frontend Docker image
         uses: docker/build-push-action@v6
         with:
           context: ./  # Root of the repo as context
-          file: ./backend/Dockerfile  # Path to Dockerfile inside 'backend' folder
+          file: ./frontend/Dockerfile  # Path to Dockerfile inside 'backend' folder
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/chat-app-backend:${{ github.run_id }}
