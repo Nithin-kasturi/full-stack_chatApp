@@ -48,3 +48,10 @@ jobs:
     - name: Update tag in helm chart
       run: |
         sed -i 's/tag: .*/tag: "${{github.run_id}}"/' chat-app-helm/values.yaml
+    - name: Commit and push changes
+      run: |
+        git config --global user.email "nithinkasturi8@gmail.com"
+        git config --global user.name "Nithin kasturi"
+        git add chat-app-helm/values.yaml
+        git commit -m "Update tag in helm chart"
+        git push
