@@ -5,6 +5,7 @@ on:
       - main
     paths-ignore:
       - 'chat-app-helm/**'
+      - ''
 
 jobs:
   docker:
